@@ -4,7 +4,7 @@
 ![Version](https://img.shields.io/github/package-json/v/M4xi1m3/numworks.js?color=green&style=flat-square)
 ![License](https://img.shields.io/npm/l/numworks.js?color=blue&style=flat-square)
 
-Utility classes to interract with a Numworks calculator using WebUSB.
+Utility classes to interact with a Numworks calculator using WebUSB.
 
 ## Running the example
 
@@ -118,6 +118,16 @@ The function `getModel` can be used to determine the model of the connected calc
     // Username written in the system. "" if none.
     "user": "M4x1m3"
   },
+  "upsilon": {
+    // Whether or not Upsilon is installed on the Numworks. If false, the rest of the Upsilon structure is absent
+    "installed": true
+    // The version of Upsilon detected on the calculator.
+    "version": "1.0.0",
+    // The type of Upsilon : if it is a derivate or not
+    "osType": "2020704889",
+    // A more simple way to get if it is a derivate or not, it is based on the os type
+    "official": true
+  },
   // The version of Epsilon installed on the calculator.
   "version": "13.0.0",
   // The system's commit ID
@@ -137,7 +147,7 @@ The script store can be read using `backupStorage` and can be written to using `
 Here is an example of adding a script in the storage
 ```js
 var storage = await calculator.backupStorage();
-storage.records.push({"name": "test", "type":"py", "autoImport": true, "code": "print('Hello World!')\n"});
+storage.records.push({"name": "test", "type": "py", "autoImport": true, position: 0, "code": "print('Hello World!')\n"});
 await calculator.installStorage(storage, function() {
   // Do stuff after writing to the storage is done
 });
